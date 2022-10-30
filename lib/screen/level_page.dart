@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:game/screen/level1_page.dart';
 
 import '../components/item_level.dart';
+import 'level2_page.dart';
 
 class LevelPage extends StatelessWidget {
   const LevelPage({super.key});
@@ -34,8 +35,13 @@ class LevelPage extends StatelessWidget {
                   num: '1',),
               ),
               
-              Levels(
-                num: '2', 
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){return level2();}));
+                },
+                child: Levels(
+                  num: '2', 
+                ),
               )
             ],
           ),
