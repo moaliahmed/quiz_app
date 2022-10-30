@@ -15,18 +15,27 @@ class Level1 extends StatefulWidget {
 }
 
 class _Level1State extends State<Level1> {
-  int questionIndex =0;
+  int questionIndex = 0;
+  int totalScore = 0;
+  int lngth=QuestionLevel1.length;
 
-  void answerQuestion (){
-   
+  void answerQuestion(int score) {
+    totalScore += score;
     setState(() {
       questionIndex++;
+    });
+   
+  }
+
+  void restartGame() {
+    setState(() {
+      totalScore = 0;
+      questionIndex = 0;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: Color(0xff1f1147),
       appBar: AppBar(
@@ -39,16 +48,23 @@ class _Level1State extends State<Level1> {
         ),
       ),
       body: Container(
-          child: questionIndex<QuestionLevel1.length? Column(
-        children: [
-          Question(question: QuestionLevel1[questionIndex]['questionText'].toString()),
-          ...(QuestionLevel1[questionIndex]['answers']as List<String>).map( (ans) {
-            return Answer(answer: ans, funcation: answerQuestion);
-          }).toList(),
-           ],
-      )
-      :Result()
-      ),
+          child: questionIndex < lngth           //length= QuestionLevel1.length;
+              ? Column(
+                  children: [
+                    Question(
+                        question: QuestionLevel1[questionIndex]['questionText']
+                            .toString()),
+                    ...(QuestionLevel1[questionIndex]['answers']
+                            as List<Map<String, Object>>)
+                        .map((ans) {
+                      return Answer(
+                          answer: ans['text'].toString(),
+                          funcation: (() => answerQuestion(
+                              int.parse(ans['score'].toString()))));
+                    }).toList(),
+                  ],
+                )
+              : Result(function: restartGame,totelScore: totalScore,lnght: lngth,)),
     );
   }
 }

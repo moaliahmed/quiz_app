@@ -12,8 +12,9 @@ class Levels extends StatelessWidget {
        Padding(
          padding: const EdgeInsets.all(16.0),
          child: Container(
-          width: 120,
-          height: 120,
+          width: 100,
+          height: 100,
+          
           decoration: BoxDecoration( color: Colors.red,borderRadius: BorderRadius.circular(999)),
           child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
             Text('Level',style: TextStyle(fontSize: 32,color: Colors.white),),
