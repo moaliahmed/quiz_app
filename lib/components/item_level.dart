@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Levels extends StatelessWidget {
    Levels({required this.num,});
@@ -10,17 +8,17 @@ class Levels extends StatelessWidget {
   Widget build(BuildContext context) {
     return 
        Padding(
-         padding: const EdgeInsets.all(16.0),
-         child: Container(
-          width: 100,
-          height: 100,
-          
-          decoration: BoxDecoration( color: Colors.red,borderRadius: BorderRadius.circular(999)),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
-            Text('Level',style: TextStyle(fontSize: 32,color: Colors.white),),
-            Text(num,style: TextStyle(fontSize: 32,color: Colors.white),)
-          ],),
-             ),
+         padding: const EdgeInsets.symmetric(vertical: 18),
+         child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Image.asset('images/octagon1.png',height: 120),
+             Column(mainAxisAlignment: MainAxisAlignment.center,children: [
+              Text('Level',style: TextStyle(fontSize: 32,color: Colors.white),),
+              Text(num,style: TextStyle(fontSize: 32,color: Colors.white),)
+            ],)
+          ],
+         ),
        )
     ;
   }
